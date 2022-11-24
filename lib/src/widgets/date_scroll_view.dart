@@ -96,11 +96,23 @@ class DateScrollView extends StatelessWidget {
   }
 
   Widget _buildDateView({required int index}) {
+    double fontSize = scrollViewOptions.textStyle.fontSize??16;
+    if((selectedIndex - index).abs() <5){
+      fontSize = fontSize - ((selectedIndex - index).abs() *1);
+    }
+    double opacity = scrollViewOptions.textStyle.color?.opacity??1;
+    Color? color;
+    double newOpacitySubstract =(((selectedIndex - index).abs())/10)+0.3;
+    if(newOpacitySubstract<=1){
+      opacity = opacity - newOpacitySubstract;
+      color  = scrollViewOptions.textStyle.color?.withOpacity(opacity)??Colors.black;
+    }
+
     return Container(
       alignment: scrollViewOptions.alignment,
       child: Text(
         '${dates[index]}${scrollViewOptions.label}',
-        style: selectedIndex == index ? scrollViewOptions.selectedTextStyle : scrollViewOptions.textStyle,
+        style: selectedIndex == index ? scrollViewOptions.selectedTextStyle : scrollViewOptions.textStyle.copyWith(fontSize: fontSize,color: color ),
       ),
     );
   }

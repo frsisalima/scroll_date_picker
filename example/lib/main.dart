@@ -15,6 +15,21 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   DateTime _selectedDate = DateTime.now();
 
+  DatePickerScrollViewOptions datePickerScrollViewOptions = DatePickerScrollViewOptions.all(
+    ScrollViewDetailOptions(
+        margin: EdgeInsets.all(4),
+      textStyle: TextStyle(
+        color: Colors.black,
+        fontWeight: FontWeight.w500,
+        fontSize: 24
+      ),
+      selectedTextStyle:  TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.w700,
+          fontSize: 24
+      )
+    )
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,10 +63,11 @@ class _MyAppState extends State<MyApp> {
             ),
           ),
           SizedBox(
-            height: 250,
+            height: 160,
             child: ScrollDatePicker(
               selectedDate: _selectedDate,
               locale: Locale('en'),
+              scrollViewOptions: datePickerScrollViewOptions,
               onDateTimeChanged: (DateTime value) {
                 setState(() {
                   _selectedDate = value;
