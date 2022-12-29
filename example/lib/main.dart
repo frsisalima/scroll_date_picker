@@ -62,7 +62,8 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
           ),
-          SizedBox(
+          Container(
+            color: Colors.red,
             height: 160,
             child: ScrollDatePicker(
               selectedDate: _selectedDate,
